@@ -1,0 +1,114 @@
+<1시간만에 끝내는 sql 입문>
+https://www.youtube.com/watch?v=1lmfJ8LHquw
+
+* sql
+db에 있는 데이터를 컨트롤하기 위한 프로그램 언어.
+ex. 데이터 추가, 수정, 삭제, 조회 등
+
+db 예
+: 오라클 , ms sql, my sql 등등
+
+
+
+* w3school.com
+sql 메뉴
+-> example
+-> try yourself
+환경을 구축하지 않아도 sql 코드를 쓰고 실행할 수 있도록 만들어둠.
+연습 가능한 창이 뜸.
+-> learn sql
+코드 실행 버튼.
+
+
+
+* 오른쪾에 your database
+->table name
+테스트 가능하게 사이트에서 8개정도의 테이블을 만들어두었음.
+ex. 카테고리, 임플로이, 오더디테일, 오더즈, 프러덕트 등등
+
+
+
+
+
+* 홈
+1. SELECT - 조회
+SELECT * FROM테이블명
+SELECT는 조회할 때 사용하는 구문.
+*가 있는 자리는 어떤 필드를 조회할 것인지 적는 자리임.
+*는 모두 가져온다는 의미.
+-> select 필드범위 테이블명
+
+테이블 안 컬럼을 필드라고 칭하는 것 같음.
+나중에 확인해보기!
+지금 커스터머 테이블 예시는 7개의 필드가 있다고 함.
+카테고리는 3개
+
+
+모든 테이블을 SELECT해본 결과
+특정 제품이 있고
+
+오더 - 주문 정보
+커스터머 - 고객
+카테고리 - 제품 유형
+인플로이 - 일 하는 사람
+오더 디테일 - 주문 하나하나에 대한 상세데이터
+슈퍼? - 배송자
+클라이언트 - 제품 공급 업체
+
+-> 위와 같이 테이블명과 담긴 데이터에 대한 내용 추측해봄.
+
+
+Orders 테이블
+OrderID, Customer ID, ㅇㅇ date 등등의 컬럼이 있음.
+이 테이블에는 고객 id 정보는 담고 있지만 이름은 담고 있지 않음.
+-> 커스터머 테이블에 이름이 담겨있음.
+=> 이렇게 특성에 맞게 테이블을 구분하여 정보를 담고 있지 하나의 테이블 안에 필요한 모든 정보가 담겨있지는 않음!!
+
+SELECT OrderID, CustomerID FROM Orders;
+필드 자리에 적은 내용만 불러옴.
+
+하지만 고객의 id가 아닌 이름을 찾고싶다면?
+customoter 테이블과 order 테이블을 연결해주는 것을 찾아 접근.
+-> join 함수 사용.
+
+
+
+테이블 내에서 엘리아스 이름을 지정할 수 있다고 함.
+테이블명 지정명
+SELECT T1 FROM Orders T1;
+-> Orders라는 테이블을 'T1"이라고 부를 것이며, 이 T1 테이블을 조회하겠다는 뜻.
+
+SELECT T1.OrderID, T1.CustomerID FROME Orders T1, Customers T2;
+-> Orders 테이블을 'T1', Customers 테이블을 'T2'라고 칭하여
+  이 테이블들에서 OrderID와 CustomersID를 조회하겠다는 뜻.
+
+
+
+* WHERE
+조건을 달 때 사용.
+
+SELECT T1.OrderID, T1.CustomerID T2.CustomerNameFROME Orders T1, Customers T2
+WHERE T1.CustomerID = T2.CustomerID;
+-> T1과 T2에서 CustomerID가 동일한 경우의 T1에서는 OrderID, CustomerID를 T2에서는 CustomerName를 조회한다는 뜻.
+
+
+
+* OrderDetail table
+OrderID가 동일한 게 여러 개 있다 = 수량을 여러 개 주문한 것이다.
+
+
+SELECT T1.OrderID, T1.CustomerID, T2.CustomerName, T3.ProductID, T4.ProductName, T4.Price as Unitprice T3.Quentity, (T4.Price * T3.Quentity) AS TotalPrice FROM Orders T1, Customers T2, OrderDetails T3, Products T4
+WHERE T1.CustomerID = T2.CustomerID AND T1.OrderID = T3.OrderID AND T1.OrderID = 10248 AND T3.ProductID = T4.ProductID;
+-> A AS B는 원래는 A지만 B로 부르겠다는 뜻.
+전반적으로 SELECT의 기본 형태는 위와 같다고 함.
+
+
+추가, 수정, 삭제 알아본 후 다시 SELECT 디테일하게 한다고 함.
+
+
+
+
+
+2. 	INSERT - 추가
+
+25:22
