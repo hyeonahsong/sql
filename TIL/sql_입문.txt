@@ -74,6 +74,8 @@ customoter 테이블과 order 테이블을 연결해주는 것을 찾아 접근.
 
 
 테이블 내에서 엘리아스 이름을 지정할 수 있다고 함.
+Alias name= 별칭
+
 테이블명 지정명
 SELECT T1 FROM Orders T1;
 -> Orders라는 테이블을 'T1"이라고 부를 것이며, 이 T1 테이블을 조회하겠다는 뜻.
@@ -110,5 +112,35 @@ WHERE T1.CustomerID = T2.CustomerID AND T1.OrderID = T3.OrderID AND T1.OrderID =
 
 
 2. 	INSERT - 추가
+튜토리얼 -> INSERT INTO
+INSERT INTO 테이블명 (컬럼1, 컬럼2) VALUES (값1, 값2)
 
-25:22
+넣고싶은 값이 문자형인 경우 "을 감싸주어야 함!
+
+
+
+
+
+3. UPDATE - 수정
+UPDATE 테이블명
+SET Column1 = Value1, Column2 = Value2
+WHERE condition;
+
+ex. 제주에서 서울로 주소가 변경됐다는 가정하에...
+UPDATE Customers
+SET Adress = "강서구",, City = "서울특별시"
+WHERE costomerID = 92;
+
+-> costomerID 가 92번인 행에서 Address와 City를 위와 같이 변경한다는 뜻.
+
+
+
+
+
+4. DELETE - 삭제
+DELETE FROM 테이블명 WHERE condition;
+
+WHERE 뒤에는 그 행을 나타낼 수 있는 값을 호함한 컬럼을 잘 선택해야 함.
+(수정도 동일.)
+
+39:08
