@@ -221,4 +221,53 @@ SELECT COUNT(*) FROM Products;
 
 
 
-49:26
+10. JOIN
+10-1. INNER JOIN
+- 양 쪽 테이블에서 교집합만 찾아 작업 수행.
+- 아래 두 예시 코드는 동일한 결과를 도출하지만 다른 JOIN함수도 사용하기 위해 INNER JOIN 형태에 익숙해질 필요가 있음.
+
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID = Customers.CustomerID;
+
+SELECT T1.OrderID, T2.CustomerName T1.OrderDate FROM O
+rders T1, Customers T2
+WHERE T1.CustomerID = T2.CustomerID;
+
+총 196건의 데이터 조회.
+
+
+
+10-2. LEFT JOIN
+- 왼쪽(먼저 적은) 테이블의 데이터를 모두 가져온 후 오른쪽(나중에 적은) 테이블과 매치시켜 데이터를 가져와 작업 수행.
+-> 왼쪽 = FROM table1 / 오른쪽 = LEFT JOIN table2
+- 데이터를 불러 올 때 왼쪽 테이블의 정보를 모두 불러온 후 오른쪾 테이블과 관련된 정보가 있으면 그대로 적어주고 없으면 NULL 값으로 처리해서 데이터를 조회.
+-> INNER JOIN에 비해 조회되는 데이터량이 많음.
+
+SELECT Customers.CutomerName, Orders.OrderID FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID = Orders.customerID
+ORDER BY Customers.CustomerName;
+10-3. RIGHTJOIN
+오른쪽(나중에 적은) 테이블의 데이터를 모두 가져온 후 왼쪽(먼저 적은) 테이블과 매치시켜 데이터를 가져와 작업 수행.
+-> 왼쪽 = FROM table1 / 오른쪽 = RIGHT JOIN table2
+
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees
+ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;
+
+
+
+10-4. FULL JOIN
+- 양 쪽 테이블의 데이터를 모두 가져와 작업 수행.
+-> 교집합
+
+SELECT Column
+FROM table1
+FULL OUTER JOIN table2
+WHERE condition
+
+59:05
+
