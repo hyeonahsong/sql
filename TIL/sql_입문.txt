@@ -269,5 +269,13 @@ FROM table1
 FULL OUTER JOIN table2
 WHERE condition
 
-59:05
 
+
+11. Group by
+그룹을 지어 원하는 결과를 얻고자 할 때 사용.
+
+SELECT * FROM Customers Group by Country;
+-> country가 같은 것끼리 묶어 Customers table의 값을 조회한다는 뜻.
+
+SELECT Country, COUNT(*) AS NumCustomer FROM Customers Group by Country;
+-> Country와  Country별 데이터 수를 함께 조회한다는 뜻.
